@@ -6,7 +6,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
-Route::view('/', 'welcome')->name('home');
+Route::view('/', 'home.index')->name('home');
 
 Route::redirect('/home', '/', 301);
 
@@ -15,10 +15,10 @@ Route::get('/test', TestController::class)->name('test')->middleware('token:secr
 
 Route::middleware('guest')->group(function(){
     Route::get('register', [RegisterController::class, 'index'])->name('register');
-    Route::get('register', [RegisterController::class, 'store'])->name('register.store');
+    Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
     Route::get('login', [LoginController::class, 'index'])->name('login');
-    Route::get('login', [LoginController::class, 'store'])->name('login.store');
+    Route::post('login', [LoginController::class, 'store'])->name('login.store');
 });
 
 

@@ -1,0 +1,1 @@
+<a {{ $attributes->class(['btn', 'btn-primary']) }} style="height:max-content" >{{ $slot }}</a>
