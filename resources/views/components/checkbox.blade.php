@@ -1,5 +1,6 @@
 <input {{ $attributes->class([
     'form-check-input'
 ])->merge([
-    'type' => 'checkbox'
+    'type' => 'checkbox',
+    'checked' => old($attributes->get('name')),
 ]) }} >

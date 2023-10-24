@@ -12,6 +12,7 @@
             </div>
 
             <x-form method="POST" action="{{ route('user.posts.update', $post->id) }}">
+                @method('PUT')
                 <div class="mb-3">
                     <label for="title">{{ __('Post Title') }}</label>
                     <x-input type="title" name="title" value="{{ $post->title ?? '' }}" />
@@ -20,7 +21,7 @@
                     <label for="content">{{ __('Post Cintent') }}</label>
                     <x-trix name="content" value="{{ $post->content ?? '' }}" />
                 </div>
-                <x-button>{{ __('Create Post') }}</x-button>
+                <x-button>{{ __('Update Post') }}</x-button>
             </x-form>
 
         </x-container>

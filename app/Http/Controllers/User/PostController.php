@@ -30,7 +30,10 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        return 'create post';
+
+        alert(__('Your post success posted!'));
+
+        return redirect()->route('user.posts.show', 123);
     }
 
     public function show(string $post)
@@ -57,7 +60,9 @@ class PostController extends Controller
 
     public function update(Request $request, string $post)
     {
-        //
+        alert(__('Your post not updated!'), 'danger');
+        
+        return redirect()->back();
     }
 
     public function delete(string $post)

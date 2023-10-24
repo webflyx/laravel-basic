@@ -11,8 +11,15 @@ if (!function_exists('test')) {
 //test()->config('foo')
 
 if (!function_exists('active_link')) {
-    function active_link( string $name, string $class = 'active' ) : string
+    function active_link(string $name, string $class = 'active'): string
     {
         return Route::is($name) ? $class : '';
+    }
+}
+
+if (!function_exists('alert')) {
+    function alert(string $text, string $type = 'success')
+    {
+        session(['alert' => $text, 'alert_type' => $type]);
     }
 }

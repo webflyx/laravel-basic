@@ -8,11 +8,17 @@ class LoginController extends Controller
 {
     public function index()
     {
+        //dd(session()->all());
         return view('login.index');
     }
     
     public function store()
     {
-        //return view('login.index');
+        
+        alert(__('Welcome to your account.'));
+
+
+        //return redirect()->route('user');
+        return redirect()->back()->withInput();
     }
 }

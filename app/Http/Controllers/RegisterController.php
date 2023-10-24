@@ -11,8 +11,11 @@ class RegisterController extends Controller
         return view('register.index');
     }
     
-    public function store()
+    public function store(Request $request)
     {
-        //return view('login.index');
+        $checkbox = $request->boolean('rules');
+        $file = $request->file('avatar');
+       
+        return redirect()->back()->withInput();
     }
 }

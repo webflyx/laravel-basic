@@ -15,7 +15,7 @@
             <x-form action="{{ route('register.store') }}" method="POST">
                 <div class="mb-3">
                     <label for="email">{{ __('Email') }}</label>
-                    <x-input type="email" name="email" id="email" />
+                    <x-input type="email" name="email" />
                 </div>
                 <div class="mb-3">
                     <label for="password">{{ __('Password') }}</label>
@@ -26,7 +26,7 @@
                     <x-input type="password" name="password-confirm" />
                 </div>
                 <div class="mb-3">
-                    <x-checkbox name="rules" id="rules" />
+                    <x-checkbox name="rules" id="rules"  />
                     <label for="rules">{{ __('Agree Rules') }}</label>
                 </div>
                 <x-button>{{ __('Enter') }}</x-button>
