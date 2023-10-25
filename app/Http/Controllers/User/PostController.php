@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PostController extends Controller
 {
@@ -18,7 +19,7 @@ class PostController extends Controller
         ];
 
         $posts = array_fill(0, 10, $post);
-        
+
 
         return view('user.posts.index', ['posts' => $posts]);
     }
@@ -30,6 +31,19 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
+        $validated = validate($request->all(), [
+            'title' => ['required', 'string', 'max:100'],
+            'content' => ['required', 'string', 'max:10000'],
+        ]);
+        
+        // if(true){
+        //     throw ValidationException::withMessages([
+        //         'permission' => __('Not enough permissions')
+        //     ]);
+        // }
+
+        dd($validated);
 
         alert(__('Your post success posted!'));
 
@@ -54,14 +68,14 @@ class PostController extends Controller
             'title' => 'Lorem ipsum dolor sit amet consectetur.',
             'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, recusandae?'
         ];
-        
+
         return view('user.posts.edit', ['post' => $post]);
     }
 
     public function update(Request $request, string $post)
     {
         alert(__('Your post not updated!'), 'danger');
-        
+
         return redirect()->back();
     }
 
@@ -74,5 +88,4 @@ class PostController extends Controller
     {
         //
     }
-
 }
