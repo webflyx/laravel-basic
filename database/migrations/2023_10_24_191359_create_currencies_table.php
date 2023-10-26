@@ -15,9 +15,6 @@ return new class extends Migration
             $table->string('id')->unique();
 
             $table->string('name');
-            $table->decimal('price')->unsigned();
-            $table->boolean('active')->default(true);
-            $table->integer('sort')->unsigned()->default(999);
 
             $table->timestamps();
         });

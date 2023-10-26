@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\User\DonateController;
 
 Route::view('/', 'home.index')->name('home');
 
@@ -25,6 +26,9 @@ Route::middleware('guest')->group(function(){
 Route::get('blog', [BlogController::class, 'index'])->name('blog');
 Route::get('blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 Route::post('blog/{post}/like', [BlogController::class, 'like'])->name('blog.like');
+
+
+Route::get('user/donates', [DonateController::class, 'index'])->name('user.donates');
 
 
 // Route::fallback(function () {
