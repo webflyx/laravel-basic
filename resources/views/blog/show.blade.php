@@ -5,8 +5,8 @@
 @section('content')
     <section>
         <x-container>
-            <h1>Blog Post</h1>
-            <div>content</div>
+            <h1>{{ $post->title }}</h1>
+            <div>{{ $post->content }}</div>
         </x-container>
     </section>
 @endsection

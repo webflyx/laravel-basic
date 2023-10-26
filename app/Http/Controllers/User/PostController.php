@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
 class PostController extends Controller
@@ -12,14 +14,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $post = (object) [
-            'id' => 123,
-            'title' => 'Lorem ipsum dolor sit amet consectetur.',
-            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, recusandae?'
-        ];
-
-        $posts = array_fill(0, 10, $post);
-
+        $posts = Post::query()->latest('published_at')->paginate(12, ['id', 'title', 'published_at']);
 
         return view('user.posts.index', ['posts' => $posts]);
     }
@@ -32,18 +27,32 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        $validated = validate($request->all(), [
-            'title' => ['required', 'string', 'max:100'],
-            'content' => ['required', 'string', 'max:10000'],
-        ]);
-        
+        // $validated = validate($request->all(), [
+        //     'title' => ['required', 'string', 'max:100'],
+        //     'content' => ['required', 'string', 'max:10000'],
+        // ]);
+
         // if(true){
         //     throw ValidationException::withMessages([
         //         'permission' => __('Not enough permissions')
         //     ]);
         // }
 
-        dd($validated);
+        $validated = validate($request->all(), [
+            'title' => ['required', 'string', 'max:100'],
+            'content' => ['required', 'string', 'max:10000'],
+            'published' => ['nullable', 'boolean'],
+            'published_at' => ['required', 'string', 'date'],
+        ]);
+
+        $post = Post::query()->create([
+            'user_id' => User::query()->value('id'),
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'published' => $validated['published'] ?? false,
+            'published_at' => $validated['published_at'],
+        ]);
+
 
         alert(__('Your post success posted!'));
 

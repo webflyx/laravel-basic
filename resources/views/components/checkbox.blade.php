@@ -3,4 +3,5 @@
 ])->merge([
     'type' => 'checkbox',
     'checked' => old($attributes->get('name')),
+    'value' => '1'
 ]) }} >

@@ -24,6 +24,16 @@
                     <x-trix name="content" />
                     <x-error name="content" />
                 </div>
+                <div class="mb-3">
+                    <label for="content">{{ __('Publish at') }}</label>
+                    <x-input type="text" name="published_at" placeholder="25.01.2020" />
+                    <x-error name="published_at" />
+                </div>
+                <div class="mb-3">
+                    <x-checkbox name="published" id="published" />
+                    <label for="published">{{ __('Published') }}</label>
+                    <x-error name="published" />
+                </div>
                 <x-button>{{ __('Create Post') }}</x-button>
             </x-form>
 

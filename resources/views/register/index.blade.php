@@ -12,7 +12,12 @@
         </div>
 
         <div class="card-body">
+            <x-errors />
             <x-form action="{{ route('register.store') }}" method="POST">
+                <div class="mb-3">
+                    <label for="name">{{ __('Name') }}</label>
+                    <x-input type="name" name="name" />
+                </div>
                 <div class="mb-3">
                     <label for="email">{{ __('Email') }}</label>
                     <x-input type="email" name="email" />
@@ -22,8 +27,8 @@
                     <x-input type="password" name="password" />
                 </div>
                 <div class="mb-3">
-                    <label for="password">{{ __('Password Confirm') }}</label>
-                    <x-input type="password" name="password-confirm" />
+                    <label for="password_confirmation">{{ __('Password Confirm') }}</label>
+                    <x-input type="password" name="password_confirmation" />
                 </div>
                 <div class="mb-3">
                     <x-checkbox name="rules" id="rules"  />
